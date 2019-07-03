@@ -1,15 +1,27 @@
 {
   "name": "quizengage",
   "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
   "private": true,
+  "scripts": {
+    "build": "ng build",
+    "e2e": "ng e2e",
+    "lint": "ng lint",
+    "ng": "ng",
+    "sort": "sort-package-json",
+    "start": "ng serve",
+    "test": "ng test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@angular/animations": "~8.1.0",
     "@angular/common": "~8.1.0",
@@ -33,10 +45,13 @@
     "@angular/cli": "~8.1.0",
     "@angular/compiler-cli": "~8.1.0",
     "@angular/language-service": "~8.1.0",
+    "@commitlint/cli": "8.0.0",
+    "@commitlint/config-conventional": "8.0.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "husky": "3.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-marbles": "0.6.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -45,9 +60,16 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "lint-staged": "9.0.2",
+    "prettier": "1.18.2",
     "protractor": "~5.4.0",
+    "sort-package-json": "1.22.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
+  },
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.9.0"
   }
 }
