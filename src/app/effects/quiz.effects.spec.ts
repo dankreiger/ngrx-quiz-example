@@ -43,7 +43,9 @@ describe('QuizEffects', () => {
     });
 
     it(`gets triggered by GetRandomQuestionBegin action and completes upon successful GET request with GetRandomQuestionSuccess`, () => {
-      console.log('TODO: WRITE MARBLE TESTING SPEC');
+      console.log(
+        'TODO: WRITE MARBLE TESTING SPEC: https://ngrx.io/guide/effects/testing'
+      );
       // const action = GetRandomQuestionBegin();
       // const completion = GetRandomQuestionSuccess({
       //   payload: { question [] }

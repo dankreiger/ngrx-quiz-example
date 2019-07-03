@@ -1,4 +1,4 @@
-export type GetRandomQuestion = '/getRandomQuestion';
-export type GetAnswers = '/getAnswers';
+export type GetRandomQuestionPath = '/getRandomQuestion';
+export type GetAnswersPath = '/getAnswers';
 
-export type ApiPath = GetRandomQuestion | GetAnswers;
+export type ApiPath = GetRandomQuestionPath | GetAnswersPath;

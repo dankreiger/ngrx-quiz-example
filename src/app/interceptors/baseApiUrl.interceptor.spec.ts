@@ -8,8 +8,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Type } from '@angular/core';
 import { BaseApiUrlInterceptor } from './baseApiUrl.interceptor';
 import { environment } from 'src/environments/environment.prod';
-import { getRandomQuestion, getAnswers } from '../constants';
-import { GetAnswers, GetRandomQuestion } from '../types/ApiPath.types';
+import { getRandomQuestionPath, getAnswersPath } from '../constants';
+import { GetAnswersPath, GetRandomQuestionPath } from '../types/ApiPath.types';
 import { BaseApiUrl } from '../types/BaseApiUrl.types';
 
 describe('BaseApiUrl Interceptor', () => {
@@ -41,7 +41,7 @@ describe('BaseApiUrl Interceptor', () => {
     it('prepends the base url get random question path and returns the full api url', done => {
       // given
       const testBaseApiUrl: BaseApiUrl = baseApiUrl;
-      const testGetRandomQuestion: GetRandomQuestion = getRandomQuestion;
+      const testGetRandomQuestion: GetRandomQuestionPath = getRandomQuestionPath;
 
       // when
       http.get(testGetRandomQuestion).subscribe(response => {
@@ -61,7 +61,7 @@ describe('BaseApiUrl Interceptor', () => {
     it('prepends the base url to get answers path the full api url', done => {
       // given
       const testBaseApiUrl: BaseApiUrl = baseApiUrl;
-      const testGetAnswers: GetAnswers = getAnswers;
+      const testGetAnswers: GetAnswersPath = getAnswersPath;
 
       // when
       http.get(testGetAnswers).subscribe(response => {

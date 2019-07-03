@@ -6,7 +6,7 @@ import * as QuizActions from '../actions/quiz.actions';
 import { of } from 'rxjs';
 import { QuizAction } from '../types/QuizAction.types';
 import { EQuizActionType } from 'src/enums/QuizAction.enums';
-import { getRandomQuestion } from '../constants';
+import { getRandomQuestionPath } from '../constants';
 import { IRandomQuestion } from '../interfaces/RandomQuestion.interface';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class QuizEffects {
     this.actions$.pipe(
       ofType<QuizAction>(EQuizActionType.GetRandomQuestionBegin),
       exhaustMap(() =>
-        this.apiService.get(getRandomQuestion).pipe(
+        this.apiService.get(getRandomQuestionPath).pipe(
           map((
             question: IRandomQuestion // interface for question
           ) =>

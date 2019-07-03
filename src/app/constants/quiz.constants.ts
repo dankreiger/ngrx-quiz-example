@@ -1,10 +1,11 @@
-import { GetRandomQuestion, GetAnswers } from '../types/ApiPath.types';
+import { GetRandomQuestionPath, GetAnswersPath } from '../types/ApiPath.types';
 
 /**
  * @description api paths
  */
-export const getRandomQuestion: GetRandomQuestion = '/getRandomQuestion';
-export const getAnswers: GetAnswers = '/getAnswers';
+export const getRandomQuestionPath: GetRandomQuestionPath =
+  '/getRandomQuestion';
+export const getAnswersPath: GetAnswersPath = '/getAnswers';
 
 /**
  * @description actions

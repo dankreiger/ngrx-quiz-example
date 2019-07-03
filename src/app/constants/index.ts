@@ -1,1 +1,1 @@
-export { getRandomQuestion, getAnswers } from './quiz.constants';
+export { getRandomQuestionPath, getAnswersPath } from './quiz.constants';
