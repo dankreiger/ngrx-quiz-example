@@ -9,7 +9,8 @@ import { QuizService } from './services/quiz.service';
 export class AppComponent implements OnInit {
   title = 'quizengage';
   constructor(private quizService: QuizService) {}
-  ngOnInit() {
+  public getNewQuestion(): void {
     this.quizService.getRandomQuestion();
   }
+  ngOnInit() {}
 }

@@ -48,7 +48,14 @@ describe('QuizEffects', () => {
       );
       // const action = GetRandomQuestionBegin();
       // const completion = GetRandomQuestionSuccess({
-      //   payload: { question [] }
+      //   payload: {
+      //     question: {
+      //       id: '1',
+      //       answerId: '123',
+      //       text: 'What is a text?',
+      //       category: 'Philosophy'
+      //     }
+      //   }
       // });
 
       // actions$ = hot('^', { a: action });

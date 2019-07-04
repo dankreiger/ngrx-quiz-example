@@ -9,11 +9,11 @@ import { ApiPath } from '../types/ApiPath.types';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  private formatErrors(error: any) {
+  private formatErrors(error: any): Observable<never> {
     return throwError(error.error);
   }
 
-  get(
+  public get(
     apiPath: ApiPath,
     params: HttpParams = new HttpParams()
   ): Observable<any> {
