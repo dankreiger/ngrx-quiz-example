@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { IAppState } from '../interfaces/AppState.interface';
+import { IAppState } from '@state/interfaces/AppState.interface';
 
-import * as QuizActions from './../actions/quiz.actions';
+import * as QuizActions from '@state/actions/quiz.actions';
 
 @Injectable({ providedIn: 'root' })
 export class QuizService {

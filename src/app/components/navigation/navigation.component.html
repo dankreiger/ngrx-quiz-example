@@ -1,0 +1,16 @@
+<div [class]="navigationData | navigationClasses: 'outerContainer'">
+  <div [class]="navigationData | navigationClasses: 'buttonContainer'">
+    <button type="button" class="xng-navigation__button active">
+      Content A
+    </button>
+
+    <button type="button" class="xng-navigation__button">
+      Content B
+    </button>
+
+    <button type="button" class="xng-navigation__button">
+      Content C
+    </button>
+  </div>
+  <hr *ngIf="hasDivider" class="xng-divider-line--dark" />
+</div>

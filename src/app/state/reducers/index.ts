@@ -1,8 +1,7 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
-import { environment } from '../../environments/environment';
-import { IQuizState } from '../interfaces/QuizState.interface';
+import { environment } from '@environments/environment';
 import { quizReducer } from './quiz.reducer';
-import { IAppState } from '../interfaces/AppState.interface';
+import { IAppState } from '@state/interfaces/AppState.interface';
 
 export const appInitialState: ActionReducerMap<IAppState> = {
   quizReducer

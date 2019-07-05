@@ -8,9 +8,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Type } from '@angular/core';
 import { BaseApiUrlInterceptor } from './baseApiUrl.interceptor';
 import { environment } from 'src/environments/environment.prod';
-import { getRandomQuestionPath, getAnswersPath } from '../constants';
-import { GetAnswersPath, GetRandomQuestionPath } from '../types/ApiPath.types';
-import { BaseApiUrl } from '../types/BaseApiUrl.types';
+import { getRandomQuestionPath, getAnswersPath } from '@state/constants';
+import {
+  GetAnswersPath,
+  GetRandomQuestionPath
+} from '@state/types/ApiPath.types';
+import { BaseApiUrl } from '@environments/environment.types';
 
 describe('BaseApiUrl Interceptor', () => {
   let httpMock: HttpTestingController;

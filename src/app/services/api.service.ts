@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ApiPath } from '../types/ApiPath.types';
+import { ApiPath } from '@state/types/ApiPath.types';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {

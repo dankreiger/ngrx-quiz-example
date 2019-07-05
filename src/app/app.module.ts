@@ -5,32 +5,50 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+/* modules */
+import { InlineSVGModule } from 'ng-inline-svg';
+
 /* ngrx */
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 /* enviroment */
-import { environment } from '../environments/environment';
+import { environment } from '@environments/environment';
 
 /* reducers */
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from '@state/reducers';
 
 /* interceptors */
-import { BaseApiUrlInterceptor } from './interceptors/baseApiUrl.interceptor';
+import { BaseApiUrlInterceptor } from '@interceptors/baseApiUrl.interceptor';
 
 /* effects */
-import { QuizEffects } from './effects/quiz.effects';
+import { QuizEffects } from '@state/effects/quiz.effects';
 
-/* components */
+/* app */
 import { AppComponent } from './app.component';
 
+/* layouts */
+import { HeaderComponent } from '@layouts/header/header.component';
+
+/* components */
+import { NavigationComponent } from '@components/navigation/navigation.component';
+
+/* pipes */
+import { NavigationClassesPipe } from '@components/navigation/navigation-classes.pipe';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    NavigationComponent,
+    NavigationClassesPipe
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    InlineSVGModule.forRoot(),
     EffectsModule.forRoot([QuizEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({

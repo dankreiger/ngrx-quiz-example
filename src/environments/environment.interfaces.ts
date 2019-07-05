@@ -1,4 +1,4 @@
-import { BaseApiUrl } from '../types/BaseApiUrl.types';
+import { BaseApiUrl } from './environment.types';
 
 export interface IEnvironment {
   production: boolean;

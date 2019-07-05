@@ -1,0 +1,28 @@
+@import '~xng-styleguide/src/styles/variables';
+
+:host {
+  background: $brand-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  img {
+    opacity: 0;
+    animation: fadein 500ms forwards;
+    margin-bottom: 30px;
+  }
+  button {
+    opacity: 0;
+    animation: fadein 500ms forwards 500ms;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

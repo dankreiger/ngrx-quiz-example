@@ -1,5 +1,5 @@
 import { quizReducer, quizReducerInitialState } from './quiz.reducer';
-import { GetRandomQuestionBegin } from '../actions/quiz.actions';
+import { GetRandomQuestionBegin } from '@state/actions/quiz.actions';
 
 describe('QuizReducer', () => {
   describe('GetRandomQuestionBegin action', () => {
