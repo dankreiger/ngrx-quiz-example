@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { map, catchError, exhaustMap, concatMap } from 'rxjs/operators';
+import { map, catchError, exhaustMap, concatMap, withLatestFrom } from 'rxjs/operators';
 import { ApiService } from '@services/api.service';
 import * as QuizActions from '@state/actions/quiz.actions';
 import { of } from 'rxjs';
@@ -10,6 +10,9 @@ import { getRandomQuestionPath, getAnswersPath } from '../constants';
 import { IRandomQuestion } from '../interfaces/RandomQuestion.interface';
 import { HttpParams } from '@angular/common/http';
 import { IAnswer } from '@state/interfaces/Answer.interface';
+import { IAppState } from '@state/interfaces/AppState.interface';
+import { Store } from '@ngrx/store';
+import { selectQuestion } from '@state/selectors/quiz.selectors';
 
 @Injectable()
 export class QuizEffects {
@@ -38,28 +41,23 @@ export class QuizEffects {
   getAnswers$ = createEffect(() =>
     this.actions$.pipe(
       ofType<QuizAction>(EQuizActionType.GetAnswersBegin),
-      exhaustMap(res => {
-        console.log(res);
-        const { category } = res.question;
-        if (category) {
-          return this.apiService
-            .get(getAnswersPath, new HttpParams().append('cat', category))
-            .pipe(
-              concatMap((answers: IAnswer[]) => [
-                QuizActions.GetAnswersSuccess({
-                  payload: { answers }
-                })
-              ]),
-              catchError(error =>
-                of(QuizActions.GetAnswersFailure({ payload: { error } }))
-              )
-            );
-        } else {
-          return;
-        }
+      withLatestFrom(this.store$.select(selectQuestion)),
+      exhaustMap(([action, question]) => {
+        return this.apiService
+        .get(getAnswersPath, new HttpParams().append('cat', question.category))
+        .pipe(
+          concatMap((answers: IAnswer[]) => [
+            QuizActions.GetAnswersSuccess({
+              payload: { answers }
+            })
+          ]),
+          catchError(error =>
+            of(QuizActions.GetAnswersFailure({ payload: { error } }))
+          )
+        );
       })
     )
   );
 
-  constructor(private actions$: Actions, private apiService: ApiService) {}
+  constructor(private actions$: Actions, private store$: Store<IAppState>, private apiService: ApiService) {}
 }

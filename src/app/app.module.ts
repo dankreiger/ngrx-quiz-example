@@ -5,9 +5,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-/* modules */
-import { InlineSVGModule } from 'ng-inline-svg';
-
 /* ngrx */
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -48,7 +45,6 @@ import { NavigationClassesPipe } from '@components/navigation/navigation-classes
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    InlineSVGModule.forRoot(),
     EffectsModule.forRoot([QuizEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
