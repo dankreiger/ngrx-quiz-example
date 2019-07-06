@@ -1,26 +1,48 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { IQuizState } from '@state/interfaces/QuizState.interface';
 import {
   GetRandomQuestionBegin,
   GetRandomQuestionSuccess,
   GetRandomQuestionFailure,
   GetAnswersBegin,
-  GetAnswersSuccess
+  GetAnswersSuccess,
+  StartQuiz,
+  StartQuizAutomatically
 } from '@state/actions/quiz.actions';
+import { IQuizState } from '@state/interfaces/QuizState.interface';
 
 export const quizReducerInitialState: IQuizState = {
-  loading: false,
-  question: null
+  quizStarted: false,
+  questionLoading: false,
+  question: null,
+  answersLoading: false,
+  answers: null,
+  error: null
 };
 
 const reducer = createReducer<IQuizState>(
   quizReducerInitialState,
   on(
+    StartQuiz,
+    (state: IQuizState): IQuizState => ({
+      ...state,
+      quizStarted: true
+    })
+  ),
+  on(
+    StartQuizAutomatically,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        quizStarted: true
+      };
+    }
+  ),
+  on(
     GetRandomQuestionBegin,
     (state: IQuizState): IQuizState => {
       return {
         ...state,
-        loading: true
+        questionLoading: true
       };
     }
   ),
@@ -30,6 +52,7 @@ const reducer = createReducer<IQuizState>(
       console.log('TODO: WRITE SPEC');
       return {
         ...state,
+        questionLoading: false,
         question: payload.question
       };
     }
@@ -41,6 +64,7 @@ const reducer = createReducer<IQuizState>(
       console.log('TODO: WRITE SPEC');
       return {
         ...state,
+        questionLoading: false,
         error: payload.error
       };
     }

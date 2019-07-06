@@ -9,7 +9,10 @@ import * as QuizActions from '@state/actions/quiz.actions';
 export class QuizService {
   constructor(private store: Store<IAppState>) {}
 
-  getRandomQuestion() {
+  public startQuiz(): void {
+    this.store.dispatch(QuizActions.StartQuiz());
+  }
+  public getRandomQuestion(): void {
     this.store.dispatch(QuizActions.GetRandomQuestionBegin());
   }
 }

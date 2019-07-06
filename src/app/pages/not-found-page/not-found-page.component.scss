@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+
+  .xng-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

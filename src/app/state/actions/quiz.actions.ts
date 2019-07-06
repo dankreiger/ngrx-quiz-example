@@ -3,6 +3,11 @@ import { EQuizActionType } from '@state/enums/QuizAction.enums';
 import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
 import { IAnswer } from '@state/interfaces/Answer.interface';
 
+export const StartQuiz = createAction(EQuizActionType.StartQuiz);
+export const StartQuizAutomatically = createAction(
+  EQuizActionType.StartQuizAutomatically
+);
+
 export const GetRandomQuestionBegin = createAction(
   EQuizActionType.GetRandomQuestionBegin
 );

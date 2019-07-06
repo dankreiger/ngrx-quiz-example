@@ -7,6 +7,11 @@ export const selectQuizState = createFeatureSelector<IAppState, IQuizState>(
   'quizReducer'
 );
 
+export const selectQuizStarted = createSelector(
+  selectQuizState,
+  (state: IQuizState): boolean => state.quizStarted
+);
+
 export const selectQuestion = createSelector(
   selectQuizState,
   (state: IQuizState): IRandomQuestion => state.question

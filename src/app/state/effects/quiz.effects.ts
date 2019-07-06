@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { map, catchError, exhaustMap, concatMap, withLatestFrom } from 'rxjs/operators';
-import { ApiService } from '@services/api.service';
+import {
+  catchError,
+  exhaustMap,
+  concatMap,
+  withLatestFrom,
+  map
+} from 'rxjs/operators';
+import { ApiService } from '@core/services/api.service';
 import * as QuizActions from '@state/actions/quiz.actions';
 import { of } from 'rxjs';
 import { QuizAction } from '@state/types/QuizAction.types';
@@ -16,14 +22,21 @@ import { selectQuestion } from '@state/selectors/quiz.selectors';
 
 @Injectable()
 export class QuizEffects {
+  getRandomQuestionBegin$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<QuizAction>(
+        EQuizActionType.StartQuiz,
+        EQuizActionType.StartQuizAutomatically
+      ),
+      map(() => QuizActions.GetRandomQuestionBegin())
+    )
+  );
   getRandomQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType<QuizAction>(EQuizActionType.GetRandomQuestionBegin),
       exhaustMap(() =>
         this.apiService.get(getRandomQuestionPath).pipe(
-          concatMap((
-            question: IRandomQuestion // interface for question
-          ) => [
+          concatMap((question: IRandomQuestion) => [
             QuizActions.GetRandomQuestionSuccess({
               payload: { question }
             }),
@@ -44,20 +57,27 @@ export class QuizEffects {
       withLatestFrom(this.store$.select(selectQuestion)),
       exhaustMap(([action, question]) => {
         return this.apiService
-        .get(getAnswersPath, new HttpParams().append('cat', question.category))
-        .pipe(
-          concatMap((answers: IAnswer[]) => [
-            QuizActions.GetAnswersSuccess({
-              payload: { answers }
-            })
-          ]),
-          catchError(error =>
-            of(QuizActions.GetAnswersFailure({ payload: { error } }))
+          .get(
+            getAnswersPath,
+            new HttpParams().append('cat', question.category)
           )
-        );
+          .pipe(
+            concatMap((answers: IAnswer[]) => [
+              QuizActions.GetAnswersSuccess({
+                payload: { answers }
+              })
+            ]),
+            catchError(error =>
+              of(QuizActions.GetAnswersFailure({ payload: { error } }))
+            )
+          );
       })
     )
   );
 
-  constructor(private actions$: Actions, private store$: Store<IAppState>, private apiService: ApiService) {}
+  constructor(
+    private actions$: Actions,
+    private store$: Store<IAppState>,
+    private apiService: ApiService
+  ) {}
 }

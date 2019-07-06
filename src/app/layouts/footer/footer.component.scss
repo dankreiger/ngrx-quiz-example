@@ -1,0 +1,16 @@
+@import '~xng-styleguide/src/styles/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  ul {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  a {
+    text-decoration: none;
+    color: $gray-dark;
+  }
+}

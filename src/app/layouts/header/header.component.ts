@@ -3,7 +3,7 @@ import { INavigationData } from '@components/navigation/navigation.interfaces';
 import { headerNavigationData } from './header.data';
 
 @Component({
-  selector: 'app-layouts-header',
+  selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

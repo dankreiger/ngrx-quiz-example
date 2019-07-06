@@ -1,11 +1,4 @@
 import { Component, Input } from '@angular/core';
-import {
-  NavigationBackground,
-  NavigationHeadingTag,
-  NavigationHorizontalPosition,
-  NavigationOutlineStyle,
-  NavigationVerticalSpace
-} from './navigation.types';
 import { INavigationData } from './navigation.interfaces';
 
 @Component({
@@ -14,16 +7,16 @@ import { INavigationData } from './navigation.interfaces';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
-  private _navigationData: INavigationData;
+  private navData: INavigationData;
   public hasDivider = false;
   @Input() set navigationData(data: INavigationData) {
     if (data.outlineStyle === 'border') {
       this.hasDivider = true;
     }
-    this._navigationData = data;
+    this.navData = data;
   }
 
   get navigationData(): INavigationData {
-    return this._navigationData;
+    return this.navData;
   }
 }

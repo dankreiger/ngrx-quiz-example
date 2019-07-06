@@ -74,7 +74,7 @@ describe('BaseApiUrl Interceptor', () => {
 
       const expectedUrl = `${testBaseApiUrl}${testGetAnswers}`;
 
-      //then
+      // then
       const httpRequest = httpMock.expectOne(expectedUrl);
       expect(httpRequest.request.url).toBe(expectedUrl);
 

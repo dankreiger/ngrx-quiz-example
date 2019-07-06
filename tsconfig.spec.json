@@ -4,11 +4,11 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/app/components/*"],
+      "@core/*": ["src/app/core/*"],
       "@environments/*": ["src/environments/*"],
-      "@interceptors/*": ["src/app/interceptors/*"],
       "@layouts/*": ["src/app/layouts/*"],
-      "@state/*": ["src/app/state/*"],
-      "@services/*": ["src/app/services/*"]
+      "@pages/*": ["src/app/pages/*"],
+      "@state/*": ["src/app/state/*"]
     },
     "outDir": "./out-tsc/spec",
     "types": ["jasmine", "node"]

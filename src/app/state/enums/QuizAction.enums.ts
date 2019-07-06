@@ -2,10 +2,12 @@
  * @description quiz redux actions
  */
 export enum EQuizActionType {
-  GetRandomQuestionBegin = '[Api Quiz] Get Questions Begin',
-  GetRandomQuestionSuccess = '[Api Quiz] Get Questions Success',
-  GetRandomQuestionFailure = '[Api Quiz] Get Questions Failure',
-  GetAnswersBegin = '[Api Quiz] Get Answer Begin',
-  GetAnswersSuccess = '[Api Quiz] Get Answer Success',
-  GetAnswersFailure = '[Api Quiz] Get Answer Failure'
+  GetRandomQuestionBegin = '[Quiz Effects] Get Questions Begin',
+  GetRandomQuestionSuccess = '[Quiz Effects] Get Questions Success',
+  GetRandomQuestionFailure = '[Quiz Effects] Get Questions Failure',
+  GetAnswersBegin = '[Quiz Effects] Get Answer Begin',
+  GetAnswersSuccess = '[Quiz Effects] Get Answer Success',
+  GetAnswersFailure = '[Quiz Effects] Get Answer Failure',
+  StartQuiz = '[Home Page] Start Quiz',
+  StartQuizAutomatically = '[QuizPage Resolver] Start Quiz Automatically'
 }

@@ -16,7 +16,7 @@ export class NavigationClassesPipe implements PipeTransform {
     navigationData: INavigationData,
     layoutArea?: NavigationLayoutArea
   ): string {
-    let classes: string[] = [];
+    const classes: string[] = [];
     const {
       outlineStyle,
       background,

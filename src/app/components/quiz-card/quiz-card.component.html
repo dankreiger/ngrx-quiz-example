@@ -1,0 +1,31 @@
+<div class="xng-card quiz-card">
+  <div class="xng-card__content">
+    <div class="xng-card__header">
+      <h3 *ngIf="question?.text" class="xng-h3 quiz-question">
+        {{ question.text }}
+      </h3>
+      <span *ngIf="userAnswered" class="xng-text-mute quiz-feedback">{{
+        quizFeedback
+      }}</span>
+    </div>
+    <hr class="xng-divider-line--light" />
+    <div class="xng-card__body">
+      <div
+        *ngIf="answers?.length"
+        class="quiz-answer-button-wrapper"
+        [class.quiz-answer-buttons-entering]="quizAnswerButtonsEntering"
+        [class.user-answered]="userAnswered"
+        [@staggerAnswerButtons]="answers.length"
+        (@staggerAnswerButtons.done)="setStaggerDone()"
+      >
+        <button
+          *ngFor="let answer of answers; trackBy: answerId"
+          (click)="selectAnswer(answer)"
+          [class]="setBtnClasses(answer)"
+        >
+          {{ answer.label }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

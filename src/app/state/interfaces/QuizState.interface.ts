@@ -2,8 +2,10 @@ import { IRandomQuestion } from './RandomQuestion.interface';
 import { IAnswer } from './Answer.interface';
 
 export interface IQuizState {
-  error?: any;
-  loading: boolean;
+  quizStarted: boolean;
+  questionLoading: boolean;
   question: IRandomQuestion | null;
-  answers?: IAnswer[] | null;
+  answersLoading: boolean;
+  answers: IAnswer[] | null;
+  error?: any;
 }

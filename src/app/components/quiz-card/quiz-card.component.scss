@@ -1,0 +1,50 @@
+@import '~xng-styleguide/src/styles/variables';
+
+:host {
+  display: flex;
+  .quiz-card {
+    width: 500px;
+  }
+  .quiz-question {
+    text-align: center;
+  }
+  .quiz-feedback {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+  .quiz-answer-button-wrapper {
+    display: grid;
+    grid-gap: 10px;
+    button {
+      user-select: none;
+    }
+    &.user-answered {
+      button {
+        pointer-events: none;
+        border: none;
+        transition: filter 500ms ease-out 500ms;
+        filter: grayscale(100%);
+        &.incorrect {
+          opacity: 1;
+          background-color: $red;
+          color: $white;
+          transition: background-color 500ms ease-in;
+          filter: grayscale(0%);
+        }
+        &.correct {
+          opacity: 1;
+          background-color: $green;
+          color: $white;
+          transition: background-color 500ms ease-in;
+          filter: grayscale(0%);
+        }
+      }
+    }
+    &.quiz-answer-buttons-entering {
+      button {
+        pointer-events: none;
+      }
+    }
+  }
+}
