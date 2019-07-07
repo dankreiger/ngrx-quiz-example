@@ -13,5 +13,6 @@ export interface IQuizState {
   level: Level;
   confirmationModalOpen: boolean;
   confirmationAccepted: boolean;
+  answerButtonsEntering: boolean;
   error?: any;
 }

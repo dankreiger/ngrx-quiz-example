@@ -18,6 +18,7 @@
         [class.new-answers-initializing]="newAnswersInitializing"
         [class.user-answered]="userAnswered"
         [@staggerAnswerButtons]="answers.length && newAnswersInitializing"
+        (@staggerAnswerButtons.start)="setStaggerStart()"
         (@staggerAnswerButtons.done)="setStaggerDone()"
       >
         <button

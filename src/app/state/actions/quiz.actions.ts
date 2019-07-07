@@ -70,3 +70,10 @@ export const CloseConfirmation = createAction(
 export const ResetConfirmation = createAction(
   EQuizActionType.ResetConfirmation
 );
+export const StartAnswerButtonsEntering = createAction(
+  EQuizActionType.StartAnswerButtonsEntering
+);
+
+export const FinishAnswerButtonsEntering = createAction(
+  EQuizActionType.FinishAnswerButtonsEntering
+);

@@ -41,6 +41,14 @@ export class QuizService {
     this._store.dispatch(QuizActions.ResetConfirmation());
   }
 
+  public startAnswerButtonsEntering(): void {
+    this._store.dispatch(QuizActions.StartAnswerButtonsEntering());
+  }
+
+  public finishAnswerButtonsEntering(): void {
+    this._store.dispatch(QuizActions.FinishAnswerButtonsEntering());
+  }
+
   /* sets difficulty level */
   public setLevel(level: Level): void {
     this._store.dispatch(QuizActions.SetLevel({ payload: { level } }));

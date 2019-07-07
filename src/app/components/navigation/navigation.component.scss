@@ -25,6 +25,9 @@
       opacity: 0.7;
     }
   }
+  .answerButtonsEntering {
+    pointer-events: none;
+  }
   .user-stats-count {
     padding: 20px;
     min-width: 60px;

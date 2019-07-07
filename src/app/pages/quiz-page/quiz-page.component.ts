@@ -66,7 +66,7 @@ export class QuizPageComponent implements OnDestroy {
   set answers(answers: IAnswer[]) {
     let filteredAnswers: IAnswer[];
     const correctAnswer: IAnswer = answers.find(
-      ({ id }) => id === this.question.answerId
+      answer => answer && answer.id === this.question.answerId
     );
     switch (this.level) {
       /* shows 3 answers */

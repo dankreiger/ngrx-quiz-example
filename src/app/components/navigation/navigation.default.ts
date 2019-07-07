@@ -6,6 +6,8 @@ export abstract class NavigationDefault {
   private _incorrectAnswerCount: number;
   private _correctAnswerCount: number;
   private _quizStarted: boolean;
+  private _answerButtonsEntering: boolean;
+
   private _hasDivider = false;
 
   @Input() set navigationData(data: INavigationData) {
@@ -46,5 +48,12 @@ export abstract class NavigationDefault {
   }
   get quizStarted(): boolean {
     return this._quizStarted;
+  }
+
+  set answerButtonsEntering(answerButtonsEntering: boolean) {
+    this._answerButtonsEntering = answerButtonsEntering;
+  }
+  get answerButtonsEntering(): boolean {
+    return this._answerButtonsEntering;
   }
 }

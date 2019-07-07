@@ -20,6 +20,7 @@
       (click)="setLevel(level)"
       class="xng-navigation__button"
       [class.active]="level === currentLevel"
+      [class.answerButtonsEntering]="answerButtonsEntering"
     >
       {{ level }}
     </button>

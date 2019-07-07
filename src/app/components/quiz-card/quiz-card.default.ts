@@ -2,6 +2,7 @@ import { IAnswer } from '@state/interfaces/Answer.interface';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
 import { UserAnswerStatus } from '@pages/quiz-page/quiz-page.component';
+import { QuizService } from '@core/services/quiz.service';
 
 /* card base setup and helper functions */
 export abstract class QuizCardDefault {
@@ -12,6 +13,8 @@ export abstract class QuizCardDefault {
   public userAnswered: boolean;
   public quizFeedback: string;
   public newAnswersInitializing = false;
+
+  constructor(protected quizService: QuizService) {}
 
   protected isCorrectAnswer(answer: IAnswer): boolean {
     return this.question.answerId === answer.id;
@@ -42,8 +45,13 @@ export abstract class QuizCardDefault {
     return answer ? answer.id : `button-${index}`;
   }
 
+  public setStaggerStart() {
+    this.quizService.startAnswerButtonsEntering();
+  }
+
   /* allow buttons to be clicked when enter animation is complete */
   public setStaggerDone(): void {
+    this.quizService.finishAnswerButtonsEntering();
     this.newAnswersInitializing = false;
   }
 }

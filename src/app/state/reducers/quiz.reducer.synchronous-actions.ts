@@ -10,7 +10,9 @@ import {
   LaunchConfirmation,
   AcceptConfirmation,
   CloseConfirmation,
-  ResetConfirmation
+  ResetConfirmation,
+  StartAnswerButtonsEntering,
+  FinishAnswerButtonsEntering
 } from '@state/actions/quiz.actions';
 import { on } from '@ngrx/store';
 
@@ -114,6 +116,24 @@ export const synchronousActions = [
       return {
         ...state,
         confirmationAccepted: false
+      };
+    }
+  ),
+  on(
+    StartAnswerButtonsEntering,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        answerButtonsEntering: true
+      };
+    }
+  ),
+  on(
+    FinishAnswerButtonsEntering,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        answerButtonsEntering: false
       };
     }
   )

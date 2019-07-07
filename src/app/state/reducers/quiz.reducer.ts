@@ -15,7 +15,8 @@ export const quizReducerInitialState: IQuizState = {
   correctAnswers: 0,
   incorrectAnswers: 0,
   confirmationModalOpen: false,
-  confirmationAccepted: false
+  confirmationAccepted: false,
+  answerButtonsEntering: false
 };
 
 /**

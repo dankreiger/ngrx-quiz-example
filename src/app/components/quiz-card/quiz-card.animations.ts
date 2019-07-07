@@ -17,7 +17,7 @@ const enterFrames = [
 ];
 export const enteringAnswerButtons = [
   trigger('staggerAnswerButtons', [
-    transition('* <=> *', [
+    transition('void <=> *', [
       query(
         ':enter',
         [

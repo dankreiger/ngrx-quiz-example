@@ -18,11 +18,8 @@ import { QuizService } from '@core/services/quiz.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuizCardComponent extends QuizCardDefault implements OnInit {
-  constructor(
-    private _cdr: ChangeDetectorRef,
-    private _quizService: QuizService
-  ) {
-    super();
+  constructor(private _cdr: ChangeDetectorRef, quizService: QuizService) {
+    super(quizService);
   }
 
   public selectAnswer(answer: IAnswer) {
@@ -31,11 +28,11 @@ export class QuizCardComponent extends QuizCardDefault implements OnInit {
     if (this.isCorrectAnswer(answer)) {
       this.quizFeedback = 'You are correct!';
       this.emitUserStatus.emit(UserAnswerStatus.CORRECT);
-      this._quizService.logUserStats(UserAnswerStatus.CORRECT);
+      this.quizService.logUserStats(UserAnswerStatus.CORRECT);
     } else {
       this.quizFeedback = 'Sorry, that was wrong.';
       this.emitUserStatus.emit(UserAnswerStatus.INCORRECT);
-      this._quizService.logUserStats(UserAnswerStatus.INCORRECT);
+      this.quizService.logUserStats(UserAnswerStatus.INCORRECT);
     }
 
     this._cdr.markForCheck();

@@ -14,7 +14,9 @@ import {
   LaunchConfirmation,
   AcceptConfirmation,
   CloseConfirmation,
-  ResetConfirmation
+  ResetConfirmation,
+  StartAnswerButtonsEntering,
+  FinishAnswerButtonsEntering
 } from './quiz.actions';
 import { EQuizActionType } from '@state/enums/QuizAction.enums';
 import {
@@ -146,6 +148,20 @@ describe('Quiz Actions', () => {
       it('has the correct type', () => {
         const action = ResetConfirmation();
         expect(action.type).toBe(EQuizActionType.ResetConfirmation);
+      });
+    });
+
+    describe('StartAnswerButtonsEntering', () => {
+      it('has the correct type', () => {
+        const action = StartAnswerButtonsEntering();
+        expect(action.type).toBe(EQuizActionType.StartAnswerButtonsEntering);
+      });
+    });
+
+    describe('FinishAnswerButtonsEntering', () => {
+      it('has the correct type', () => {
+        const action = FinishAnswerButtonsEntering();
+        expect(action.type).toBe(EQuizActionType.FinishAnswerButtonsEntering);
       });
     });
   });

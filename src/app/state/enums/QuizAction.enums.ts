@@ -18,5 +18,7 @@ export enum EQuizActionType {
   LaunchConfirmation = '[Quiz Service] Launch Confirmation',
   AcceptConfirmation = '[Quiz Service] Accept Confirmation',
   CloseConfirmation = '[Quiz Service] Close Confirmation',
-  ResetConfirmation = '[Quiz Service] Reset Confirmation'
+  ResetConfirmation = '[Quiz Service] Reset Confirmation',
+  StartAnswerButtonsEntering = '[Quiz Service] StartAnswerButtonsEntering',
+  FinishAnswerButtonsEntering = '[Quiz Service] Finish Answer Buttons Entering'
 }

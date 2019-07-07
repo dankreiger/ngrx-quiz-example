@@ -42,6 +42,7 @@ export class NavigationComponent extends NavigationDefault
         this.correctAnswerCount = state.correctAnswers;
         this.incorrectAnswerCount = state.incorrectAnswers;
         this.currentLevel = state.level;
+        this.answerButtonsEntering = state.answerButtonsEntering;
         this._cdr.markForCheck();
       });
   }
