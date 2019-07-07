@@ -1,6 +1,26 @@
 <!-- TODO organize grid markup into reusable layout -->
-<div class="xng-page-narrow">
+<div class="xng-page-narrow quiz-page-wrapper">
   <div class="xng-grid-row">
-    <app-quiz-card [question]="question" [answers]="answers"></app-quiz-card>
+    <app-quiz-card
+      #quizCard
+      (emitUserStatus)="userAnswerStatus($event)"
+      [question]="question"
+      [answers]="answers"
+    ></app-quiz-card>
+  </div>
+  <div
+    class="xng-grid-row quiz-page-controls"
+    [class.visible]="currentUserAnswerStatus"
+  >
+    <button
+      class="xng-btn xng-btn--secondary"
+      (click)="endQuiz()"
+      routerLink="/"
+    >
+      Go Home
+    </button>
+    <button class="xng-btn xng-btn--primary" (click)="fetchNewQuestion()">
+      New Question
+    </button>
   </div>
 </div>

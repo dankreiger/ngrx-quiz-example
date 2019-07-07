@@ -6,7 +6,9 @@ import {
   GetAnswersSuccess,
   GetAnswersBegin,
   StartQuiz,
-  StartQuizAutomatically
+  EndQuiz,
+  IncrementCorrectAnswers,
+  IncrementIncorrectAnswers
 } from './quiz.actions';
 import { EQuizActionType } from '@state/enums/QuizAction.enums';
 import {
@@ -21,10 +23,10 @@ describe('Quiz Actions', () => {
       expect(action.type).toBe(EQuizActionType.StartQuiz);
     });
   });
-  describe('StartQuizAutomatically', () => {
+  describe('EndQuiz', () => {
     it('has the correct type', () => {
-      const action = StartQuizAutomatically();
-      expect(action.type).toBe(EQuizActionType.StartQuizAutomatically);
+      const action = EndQuiz();
+      expect(action.type).toBe(EQuizActionType.EndQuiz);
     });
   });
   describe('GetRandomQuestionBegin', () => {
@@ -74,5 +76,19 @@ describe('GetAnswersFailure', () => {
       payload: { error: 'error' }
     });
     expect(action.type).toBe(EQuizActionType.GetAnswersFailure);
+  });
+});
+
+describe('IncrementCorrectAnswers', () => {
+  it('has the correct type', () => {
+    const action = IncrementCorrectAnswers();
+    expect(action.type).toBe(EQuizActionType.IncrementCorrectAnswers);
+  });
+});
+
+describe('IncrementIncorrectAnswers', () => {
+  it('has the correct type', () => {
+    const action = IncrementIncorrectAnswers();
+    expect(action.type).toBe(EQuizActionType.IncrementIncorrectAnswers);
   });
 });

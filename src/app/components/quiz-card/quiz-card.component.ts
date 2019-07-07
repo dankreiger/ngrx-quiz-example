@@ -1,23 +1,37 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef
+} from '@angular/core';
 import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
 import { IAnswer } from '@state/interfaces/Answer.interface';
 import { enteringAnswerButtons } from './quiz-card.animations';
+import { UserAnswerStatus } from '@pages/quiz-page/quiz-page.component';
 
+interface QuizSession {
+  currentUserAnswer: IAnswer;
+  userAnswered: boolean;
+  quizFeedback: string;
+}
 @Component({
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',
   styleUrls: ['./quiz-card.component.scss'],
-  animations: [enteringAnswerButtons]
+  animations: [enteringAnswerButtons],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuizCardComponent implements OnInit {
-  @Input() question: IRandomQuestion;
-  @Input() answers: IAnswer[];
-
-  private currentUserAnswer: IAnswer;
-  public userAnswered = false;
+  private currentQuizSessionWritable: QuizSession;
   public quizAnswerButtonsEntering = false;
-  public userAnsweredCorrectly = false;
-  public quizFeedback: string;
+
+  @Input() question: IRandomQuestion;
+
+  @Input() answers: IAnswer[];
+  @Output() emitUserStatus = new EventEmitter<UserAnswerStatus>();
 
   private isCorrectAnswer(answer: IAnswer): boolean {
     return this.question.answerId === answer.id;
@@ -29,10 +43,26 @@ export class QuizCardComponent implements OnInit {
     );
   }
 
+  set currentQuizSession(data) {
+    this.currentQuizSessionWritable = { ...this.currentQuizSession, ...data };
+  }
+  get currentQuizSession(): QuizSession {
+    return this.currentQuizSessionWritable;
+  }
+  get currentUserAnswer(): IAnswer {
+    return this.currentQuizSession.currentUserAnswer;
+  }
+  get userAnswered(): boolean {
+    return this.currentQuizSession.userAnswered;
+  }
+  get quizFeedback(): string {
+    return this.currentQuizSession.quizFeedback;
+  }
+
   /* sets button classes according to quiz state */
   public setBtnClasses(buttonAnswerData: IAnswer): string {
     const base = 'xng-btn xng-btn--inverted';
-    if (this.userAnswered) {
+    if (this.currentQuizSession.userAnswered) {
       if (this.isCorrectAnswer(buttonAnswerData)) {
         return `${base} correct`;
       }
@@ -40,7 +70,7 @@ export class QuizCardComponent implements OnInit {
         return `${base} incorrect`;
       }
     }
-    return `${base} xng-btn--inverted`;
+    return base;
   }
 
   /* trackByFn for answer list (performance) */
@@ -54,16 +84,25 @@ export class QuizCardComponent implements OnInit {
   }
 
   public selectAnswer(answer: IAnswer) {
-    this.currentUserAnswer = answer;
-    this.userAnswered = true;
+    this.currentQuizSession.currentUserAnswer = answer;
+    this.currentQuizSession.userAnswered = true;
     if (this.isCorrectAnswer(answer)) {
-      this.quizFeedback = 'You are correct!';
+      this.currentQuizSession.quizFeedback = 'You are correct!';
+      this.emitUserStatus.emit(UserAnswerStatus.CORRECT);
     } else {
-      this.quizFeedback = 'Sorry, that was wrong.';
+      this.currentQuizSession.quizFeedback = 'Sorry, that was wrong.';
+      this.emitUserStatus.emit(UserAnswerStatus.INCORRECT);
     }
+    this.cdr.markForCheck();
   }
 
   ngOnInit() {
     this.quizAnswerButtonsEntering = this.answers.length > 0;
+    this.currentQuizSession = {
+      currentUserAnswer: null,
+      userAnswered: false,
+      quizFeedback: null
+    };
   }
+  constructor(private cdr: ChangeDetectorRef) {}
 }

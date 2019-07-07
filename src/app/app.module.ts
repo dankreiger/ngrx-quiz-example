@@ -33,7 +33,11 @@ import { NotFoundPageComponent } from '@pages/not-found-page/not-found-page.comp
 
 /* layouts */
 import { LayoutsModule } from '@layouts/layouts.module';
+
+/* components */
 import { QuizCardComponent } from './components/quiz-card/quiz-card.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,9 @@ import { QuizCardComponent } from './components/quiz-card/quiz-card.component';
     QuizPageComponent,
     HomePageComponent,
     NotFoundPageComponent,
-    QuizCardComponent
+    QuizCardComponent,
+    LoadingComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

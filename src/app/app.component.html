@@ -1,3 +1,10 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+<app-loading *ngIf="quizLoading; else loadingError"></app-loading>
 <app-footer></app-footer>
+
+<ng-template #loadingError>
+  <app-error *ngIf="error; else router"></app-error>
+</ng-template>
+<ng-template #router>
+  <router-outlet></router-outlet>
+</ng-template>

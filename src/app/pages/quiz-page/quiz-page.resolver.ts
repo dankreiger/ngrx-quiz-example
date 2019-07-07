@@ -4,32 +4,21 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IAppState } from '@state/interfaces/AppState.interface';
 
-import {
-  selectQuestion,
-  selectQuizState
-} from '@state/selectors/quiz.selectors';
-import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
-import { map, first, filter } from 'rxjs/operators';
-import { StartQuizAutomatically } from '@state/actions/quiz.actions';
-import { IAnswer } from '@state/interfaces/Answer.interface';
+import { selectQuizState } from '@state/selectors/quiz.selectors';
+import { first, filter } from 'rxjs/operators';
 import { IQuizState } from '@state/interfaces/QuizState.interface';
+import { QuizService } from '@core/services/quiz.service';
 
 @Injectable({ providedIn: 'root' })
 export class QuizPageResolver implements Resolve<IQuizState> {
-  constructor(private store: Store<IAppState>) {}
+  constructor(
+    private store: Store<IAppState>,
+    private quizService: QuizService
+  ) {}
 
   public resolve(): Observable<IQuizState> {
     this.initQuizData();
-
     return this.waitForQuizData();
-  }
-
-  private waitForQuestionData(): Observable<IRandomQuestion> {
-    return this.store.select(selectQuestion).pipe(
-      map((question: IRandomQuestion) => question),
-      filter(question => !!question),
-      first()
-    );
   }
 
   private waitForQuizData(): Observable<IQuizState> {
@@ -49,7 +38,7 @@ export class QuizPageResolver implements Resolve<IQuizState> {
       .pipe(first())
       .subscribe((state: IQuizState) => {
         if (!state || !state.question || !state.answers) {
-          this.store.dispatch(StartQuizAutomatically());
+          this.quizService.startQuiz();
         }
       });
   }

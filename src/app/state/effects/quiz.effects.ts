@@ -24,10 +24,7 @@ import { selectQuestion } from '@state/selectors/quiz.selectors';
 export class QuizEffects {
   getRandomQuestionBegin$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<QuizAction>(
-        EQuizActionType.StartQuiz,
-        EQuizActionType.StartQuizAutomatically
-      ),
+      ofType<QuizAction>(EQuizActionType.StartQuiz),
       map(() => QuizActions.GetRandomQuestionBegin())
     )
   );

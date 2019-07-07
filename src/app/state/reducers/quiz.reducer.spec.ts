@@ -4,7 +4,9 @@ import {
   GetRandomQuestionSuccess,
   GetRandomQuestionFailure,
   StartQuiz,
-  StartQuizAutomatically
+  EndQuiz,
+  IncrementCorrectAnswers,
+  IncrementIncorrectAnswers
 } from '@state/actions/quiz.actions';
 import { dummyRandomQuestion } from '@state/utils/dummy-test-data';
 import { IQuizState } from '@state/interfaces/QuizState.interface';
@@ -35,13 +37,13 @@ describe('QuizReducer', () => {
     });
   });
 
-  describe('StartQuizAutomatically action', () => {
-    it('sets quizStarted to true without mutating the initial state', () => {
+  describe('EndQuiz action', () => {
+    it('sets quizStarted to false without mutating the initial state', () => {
       /**
        * @given
        */
-      initialState = { ...quizReducerInitialState };
-      const action = StartQuizAutomatically();
+      initialState = { ...quizReducerInitialState, quizStarted: true };
+      const action = EndQuiz();
 
       /**
        * @when
@@ -53,7 +55,7 @@ describe('QuizReducer', () => {
        */
       expect(newState).toEqual({
         ...initialState,
-        quizStarted: true
+        quizStarted: false
       });
       expect(newState).not.toEqual(initialState);
     });
@@ -136,6 +138,57 @@ describe('QuizReducer', () => {
         ...initialState,
         questionLoading: false,
         error: 'error'
+      });
+      expect(newState).not.toEqual(initialState);
+    });
+  });
+
+  describe('IncrementCorrectAnswers action', () => {
+    it('returns increments the correct answers without mutating the initial state', () => {
+      /**
+       * @given
+       */
+      initialState = {
+        ...quizReducerInitialState
+      };
+      const action = IncrementCorrectAnswers();
+
+      /**
+       * @when
+       */
+      const newState = quizReducer(initialState, action);
+
+      /**
+       * @expect
+       */
+      expect(newState).toEqual({
+        ...initialState,
+        correctAnswers: 1
+      });
+      expect(newState).not.toEqual(initialState);
+    });
+  });
+  describe('IncrementIncorrectAnswers action', () => {
+    it('returns increments the incorrect answers without mutating the initial state', () => {
+      /**
+       * @given
+       */
+      initialState = {
+        ...quizReducerInitialState
+      };
+      const action = IncrementIncorrectAnswers();
+
+      /**
+       * @when
+       */
+      const newState = quizReducer(initialState, action);
+
+      /**
+       * @expect
+       */
+      expect(newState).toEqual({
+        ...initialState,
+        incorrectAnswers: 1
       });
       expect(newState).not.toEqual(initialState);
     });

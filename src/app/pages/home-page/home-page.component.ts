@@ -12,7 +12,7 @@ export class HomePageComponent {
 
   constructor(private quizService: QuizService) {}
 
-  public getNewQuestion(): void {
+  public fetchNewQuestion(): void {
     this.quizService.startQuiz();
   }
 }

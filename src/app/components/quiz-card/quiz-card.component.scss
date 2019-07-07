@@ -2,8 +2,9 @@
 
 :host {
   display: flex;
+  flex-grow: 1;
   .quiz-card {
-    width: 500px;
+    flex-grow: 1;
   }
   .quiz-question {
     text-align: center;
@@ -12,25 +13,34 @@
     width: 100%;
     text-align: center;
     display: block;
+    opacity: 0;
+    height: 15px;
+    transition: 250ms opacity;
+    &.visible {
+      opacity: 1;
+    }
   }
   .quiz-answer-button-wrapper {
     display: grid;
     grid-gap: 10px;
     button {
       user-select: none;
+      transition: opacity 250ms;
     }
     &.user-answered {
       button {
         pointer-events: none;
-        border: none;
         transition: filter 500ms ease-out 500ms;
         filter: grayscale(100%);
+        opacity: 0.5;
+        border: none;
         &.incorrect {
           opacity: 1;
           background-color: $red;
           color: $white;
           transition: background-color 500ms ease-in;
           filter: grayscale(0%);
+          opacity: 0.8;
         }
         &.correct {
           opacity: 1;
@@ -38,6 +48,7 @@
           color: $white;
           transition: background-color 500ms ease-in;
           filter: grayscale(0%);
+          opacity: 1;
         }
       }
     }

@@ -12,5 +12,13 @@
       Content C
     </button>
   </div>
+  <div *ngIf="quizStarted" class="user-stats-wrapper">
+    <div class="user-stats-count">
+      Correct: <span class="correct">{{ correctAnswerCount }}</span>
+    </div>
+    <div class="user-stats-count">
+      Incorrect: <span class="incorrect">{{ incorrectAnswerCount }}</span>
+    </div>
+  </div>
   <hr *ngIf="hasDivider" class="xng-divider-line--dark" />
 </div>

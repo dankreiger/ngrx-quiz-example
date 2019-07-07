@@ -7,5 +7,7 @@ export interface IQuizState {
   question: IRandomQuestion | null;
   answersLoading: boolean;
   answers: IAnswer[] | null;
+  correctAnswers: number;
+  incorrectAnswers: number;
   error?: any;
 }

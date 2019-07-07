@@ -4,9 +4,13 @@
       <h3 *ngIf="question?.text" class="xng-h3 quiz-question">
         {{ question.text }}
       </h3>
-      <span *ngIf="userAnswered" class="xng-text-mute quiz-feedback">{{
-        quizFeedback
-      }}</span>
+      <span
+        class="xng-text-mute quiz-feedback"
+        [class.visible]="userAnswered"
+        [class.correct]="userAnsweredCorrectly"
+        [class.incorrect]="userAnsweredIncorrectly"
+        >{{ quizFeedback }}</span
+      >
     </div>
     <hr class="xng-divider-line--light" />
     <div class="xng-card__body">

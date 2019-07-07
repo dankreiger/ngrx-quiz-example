@@ -6,7 +6,11 @@ import {
   GetAnswersBegin,
   GetAnswersSuccess,
   StartQuiz,
-  StartQuizAutomatically
+  GetAnswersFailure,
+  EndQuiz,
+  IncrementCorrectAnswers,
+  IncrementIncorrectAnswers,
+  ResetQuizData
 } from '@state/actions/quiz.actions';
 import { IQuizState } from '@state/interfaces/QuizState.interface';
 
@@ -16,7 +20,9 @@ export const quizReducerInitialState: IQuizState = {
   question: null,
   answersLoading: false,
   answers: null,
-  error: null
+  error: null,
+  correctAnswers: 0,
+  incorrectAnswers: 0
 };
 
 const reducer = createReducer<IQuizState>(
@@ -29,11 +35,11 @@ const reducer = createReducer<IQuizState>(
     })
   ),
   on(
-    StartQuizAutomatically,
+    EndQuiz,
     (state: IQuizState): IQuizState => {
       return {
         ...state,
-        quizStarted: true
+        quizStarted: false
       };
     }
   ),
@@ -73,7 +79,8 @@ const reducer = createReducer<IQuizState>(
     GetAnswersBegin,
     (state: IQuizState): IQuizState => {
       return {
-        ...state
+        ...state,
+        answersLoading: true
       };
     }
   ),
@@ -83,7 +90,49 @@ const reducer = createReducer<IQuizState>(
       console.log('TODO: WRITE SPEC');
       return {
         ...state,
+        answersLoading: false,
         answers: payload.answers
+      };
+    }
+  ),
+  on(
+    GetAnswersFailure,
+    (state: IQuizState, { payload }): IQuizState => {
+      console.log('TODO: WRITE SPEC');
+      return {
+        ...state,
+        answersLoading: false,
+        error: payload.error
+      };
+    }
+  ),
+  on(
+    IncrementCorrectAnswers,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        answersLoading: false,
+        correctAnswers: state.correctAnswers + 1
+      };
+    }
+  ),
+  on(
+    IncrementIncorrectAnswers,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        answersLoading: false,
+        incorrectAnswers: state.incorrectAnswers + 1
+      };
+    }
+  ),
+  on(
+    ResetQuizData,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        question: null,
+        answers: null
       };
     }
   )

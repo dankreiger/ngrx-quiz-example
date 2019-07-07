@@ -8,6 +8,9 @@ export enum EQuizActionType {
   GetAnswersBegin = '[Quiz Effects] Get Answer Begin',
   GetAnswersSuccess = '[Quiz Effects] Get Answer Success',
   GetAnswersFailure = '[Quiz Effects] Get Answer Failure',
-  StartQuiz = '[Home Page] Start Quiz',
-  StartQuizAutomatically = '[QuizPage Resolver] Start Quiz Automatically'
+  StartQuiz = '[Quiz Service] Start Quiz',
+  EndQuiz = '[Quiz Service] End Quiz',
+  IncrementCorrectAnswers = '[Quiz Service] Increment Correct Answers',
+  IncrementIncorrectAnswers = '[Quiz Service] Increment Incorrect Answers',
+  ResetQuizData = '[Quiz Service] Reset Quiz Data'
 }

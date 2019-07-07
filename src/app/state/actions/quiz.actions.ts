@@ -4,9 +4,8 @@ import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
 import { IAnswer } from '@state/interfaces/Answer.interface';
 
 export const StartQuiz = createAction(EQuizActionType.StartQuiz);
-export const StartQuizAutomatically = createAction(
-  EQuizActionType.StartQuizAutomatically
-);
+export const EndQuiz = createAction(EQuizActionType.EndQuiz);
+export const ResetQuizData = createAction(EQuizActionType.ResetQuizData);
 
 export const GetRandomQuestionBegin = createAction(
   EQuizActionType.GetRandomQuestionBegin
@@ -32,4 +31,12 @@ export const GetAnswersSuccess = createAction(
 export const GetAnswersFailure = createAction(
   EQuizActionType.GetAnswersFailure,
   props<{ payload: { error: any } }>()
+);
+
+export const IncrementCorrectAnswers = createAction(
+  EQuizActionType.IncrementCorrectAnswers
+);
+
+export const IncrementIncorrectAnswers = createAction(
+  EQuizActionType.IncrementIncorrectAnswers
 );
