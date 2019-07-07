@@ -1,6 +1,7 @@
 :host {
   display: flex;
   width: 100%;
+  user-select: none;
   .quiz-page-wrapper {
     width: 100%;
     animation: fadein 250ms;
@@ -9,8 +10,11 @@
     opacity: 0;
     transition: 250ms opacity;
     justify-content: space-around;
+    pointer-events: none;
+    height: 45px;
     &.visible {
       opacity: 1;
+      pointer-events: auto;
     }
     button {
       flex-grow: 1;

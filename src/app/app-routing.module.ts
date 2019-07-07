@@ -5,6 +5,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { QuizPageResolver } from '@pages/quiz-page/quiz-page.resolver';
 
+/* TODO: lazy load routes */
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   {

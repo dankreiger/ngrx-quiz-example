@@ -1,13 +1,10 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   OnDestroy,
-  ViewChild
+  ChangeDetectorRef
 } from '@angular/core';
 import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
-import { ActivatedRoute } from '@angular/router';
 import { enteringAnswerButtons } from './quiz-page.animations';
 import { IQuizState } from '@state/interfaces/QuizState.interface';
 import { IAnswer } from '@state/interfaces/Answer.interface';
@@ -16,11 +13,17 @@ import { selectQuizState } from '@state/selectors/quiz.selectors';
 import { IAppState } from '@state/interfaces/AppState.interface';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { QuizCardComponent } from '@components/quiz-card/quiz-card.component';
+import { Level } from '@state/types/Level.types';
+import { EASY, MEDIUM, HARD } from '@state/constants/quiz.constants';
 
 export enum UserAnswerStatus {
   CORRECT = 'correct',
   INCORRECT = 'incorrect'
+}
+
+enum AnswerCount {
+  EASY = 3,
+  MEDIUM = 4
 }
 @Component({
   selector: 'app-quiz-page',
@@ -30,46 +33,91 @@ export enum UserAnswerStatus {
   animations: [enteringAnswerButtons]
 })
 export class QuizPageComponent implements OnDestroy {
-  private quizDataSubscription: Subscription;
-  public quizPageData: IQuizState;
+  private _quizDataSubscription: Subscription;
+  private _answers: IAnswer[];
+  private _level: Level;
+  private _question: IRandomQuestion;
+
   public currentUserAnswerStatus: UserAnswerStatus;
-  @ViewChild('quizCard', { static: false }) quizCard: QuizCardComponent;
 
   constructor(
-    private route: ActivatedRoute,
-    private quizService: QuizService,
-    private cdr: ChangeDetectorRef,
-    private store: Store<IAppState>
+    private _quizService: QuizService,
+    private _store: Store<IAppState>,
+    private _cdr: ChangeDetectorRef
   ) {
-    this.quizDataSubscription = this.store
+    this._quizDataSubscription = this._store
       .select(selectQuizState)
       .subscribe((state: IQuizState) => {
-        this.quizPageData = state;
+        this.level = state.level;
+        this.question = state.question;
+        this.answers = state.answers;
+        this._cdr.markForCheck();
       });
   }
 
+  set question(question: IRandomQuestion) {
+    this._question = question;
+  }
+
   get question(): IRandomQuestion {
-    return this.quizPageData.question;
+    return this._question;
+  }
+
+  set answers(answers: IAnswer[]) {
+    let filteredAnswers: IAnswer[];
+    const correctAnswer: IAnswer = answers.find(
+      ({ id }) => id === this.question.answerId
+    );
+    switch (this.level) {
+      /* shows 3 answers */
+      case EASY:
+        filteredAnswers = answers.slice(0, AnswerCount.EASY);
+        break;
+      /* shows 4 answers */
+      case MEDIUM:
+        filteredAnswers = answers.slice(0, AnswerCount.MEDIUM);
+        break;
+      /* shows all answers (hard) */
+      default:
+        filteredAnswers = answers;
+        break;
+    }
+
+    if (!filteredAnswers.includes(correctAnswer)) {
+      filteredAnswers.pop();
+      filteredAnswers.push(correctAnswer);
+    }
+
+    this._answers = filteredAnswers;
   }
 
   get answers(): IAnswer[] {
-    return this.quizPageData.answers;
+    return this._answers;
   }
 
-  fetchNewQuestion() {
-    this.quizService.logUserStats(this.currentUserAnswerStatus);
-    this.quizService.resetQuizData();
-    this.quizService.getRandomQuestion();
+  set level(level: Level) {
+    this._level = level;
   }
 
-  endQuiz() {
-    this.quizService.endQuiz();
+  get level(): Level {
+    return this._level;
+  }
+
+  public fetchNewQuestion() {
+    this._quizService.resetQuizData();
+    this._quizService.getRandomQuestion();
+  }
+
+  public endQuiz() {
+    this._quizService.endQuiz();
+    this._quizService.resetScores();
   }
 
   public userAnswerStatus(status: UserAnswerStatus) {
     this.currentUserAnswerStatus = status;
   }
+
   ngOnDestroy() {
-    this.quizDataSubscription.unsubscribe();
+    this._quizDataSubscription.unsubscribe();
   }
 }

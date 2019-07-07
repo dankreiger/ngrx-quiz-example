@@ -22,6 +22,12 @@ import { selectQuestion } from '@state/selectors/quiz.selectors';
 
 @Injectable()
 export class QuizEffects {
+  constructor(
+    private actions$: Actions,
+    private store$: Store<IAppState>,
+    private apiService: ApiService
+  ) {}
+
   getRandomQuestionBegin$ = createEffect(() =>
     this.actions$.pipe(
       ofType<QuizAction>(EQuizActionType.StartQuiz),
@@ -47,7 +53,6 @@ export class QuizEffects {
     )
   );
 
-  /* TODO: setup redux actions for answers */
   getAnswers$ = createEffect(() =>
     this.actions$.pipe(
       ofType<QuizAction>(EQuizActionType.GetAnswersBegin),
@@ -71,10 +76,4 @@ export class QuizEffects {
       })
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private store$: Store<IAppState>,
-    private apiService: ApiService
-  ) {}
 }

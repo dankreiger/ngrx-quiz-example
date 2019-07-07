@@ -1,5 +1,6 @@
 :host {
   display: flex;
+  user-select: none;
   img {
     opacity: 0;
     animation: fadein 250ms forwards ease-in-out;

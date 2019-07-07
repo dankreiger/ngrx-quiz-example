@@ -6,9 +6,9 @@ import { ApiPath } from '@state/types/ApiPath.types';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
-  private formatErrors(error: any): Observable<never> {
+  private _formatErrors(error: any): Observable<never> {
     return throwError(error.error);
   }
 
@@ -16,8 +16,8 @@ export class ApiService {
     apiPath: ApiPath,
     params: HttpParams = new HttpParams()
   ): Observable<any> {
-    return this.http
-      .get(apiPath, { params })
-      .pipe(catchError(this.formatErrors));
+    return this._http
+      .get<ApiPath>(apiPath, { params })
+      .pipe(catchError(this._formatErrors));
   }
 }

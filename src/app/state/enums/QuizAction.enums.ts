@@ -12,5 +12,7 @@ export enum EQuizActionType {
   EndQuiz = '[Quiz Service] End Quiz',
   IncrementCorrectAnswers = '[Quiz Service] Increment Correct Answers',
   IncrementIncorrectAnswers = '[Quiz Service] Increment Incorrect Answers',
-  ResetQuizData = '[Quiz Service] Reset Quiz Data'
+  ResetQuizData = '[Quiz Service] Reset Quiz Data',
+  SetLevel = '[Quiz Service] Set Level',
+  ResetScores = '[Quiz Service] Reset Scores'
 }

@@ -2,11 +2,14 @@ import { createAction, props } from '@ngrx/store';
 import { EQuizActionType } from '@state/enums/QuizAction.enums';
 import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
 import { IAnswer } from '@state/interfaces/Answer.interface';
+import { Level } from '@state/types/Level.types';
 
-export const StartQuiz = createAction(EQuizActionType.StartQuiz);
-export const EndQuiz = createAction(EQuizActionType.EndQuiz);
-export const ResetQuizData = createAction(EQuizActionType.ResetQuizData);
+/**
+ * TODO: split questions and answers into separate actions files
+ * (there are too many actions here)
+ */
 
+/* http actions */
 export const GetRandomQuestionBegin = createAction(
   EQuizActionType.GetRandomQuestionBegin
 );
@@ -33,10 +36,23 @@ export const GetAnswersFailure = createAction(
   props<{ payload: { error: any } }>()
 );
 
+/* synchronous actions */
+
+export const StartQuiz = createAction(EQuizActionType.StartQuiz);
+export const EndQuiz = createAction(EQuizActionType.EndQuiz);
+export const ResetQuizData = createAction(EQuizActionType.ResetQuizData);
+
 export const IncrementCorrectAnswers = createAction(
   EQuizActionType.IncrementCorrectAnswers
 );
 
 export const IncrementIncorrectAnswers = createAction(
   EQuizActionType.IncrementIncorrectAnswers
+);
+
+export const ResetScores = createAction(EQuizActionType.ResetScores);
+
+export const SetLevel = createAction(
+  EQuizActionType.SetLevel,
+  props<{ payload: { level: Level } }>()
 );

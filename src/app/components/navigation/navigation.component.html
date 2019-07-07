@@ -1,23 +1,29 @@
 <div [class]="navigationData | navigationClasses: 'outerContainer'">
   <div [class]="navigationData | navigationClasses: 'buttonContainer'">
-    <button type="button" class="xng-navigation__button active">
-      Content A
-    </button>
-
-    <button type="button" class="xng-navigation__button">
-      Content B
-    </button>
-
-    <button type="button" class="xng-navigation__button">
-      Content C
+    <button class="xng-navigation__button go-home" (click)="goHome()">
+      Home
     </button>
   </div>
-  <div *ngIf="quizStarted" class="user-stats-wrapper">
-    <div class="user-stats-count">
-      Correct: <span class="correct">{{ correctAnswerCount }}</span>
+  <div [class]="navigationData | navigationClasses: 'buttonContainer'">
+    <button
+      *ngFor="let level of levels"
+      type="button"
+      (click)="setLevel(level)"
+      class="xng-navigation__button"
+      [class.active]="level === currentLevel"
+    >
+      {{ level }}
+    </button>
+  </div>
+  <div
+    *ngIf="quizStarted"
+    [class]="navigationData | navigationClasses: 'buttonContainer'"
+  >
+    <div class="xng-navigation__button user-stats-count correct">
+      {{ correctAnswerCount }}
     </div>
-    <div class="user-stats-count">
-      Incorrect: <span class="incorrect">{{ incorrectAnswerCount }}</span>
+    <div class="xng-navigation__button user-stats-count incorrect">
+      {{ incorrectAnswerCount }}
     </div>
   </div>
   <hr *ngIf="hasDivider" class="xng-divider-line--dark" />

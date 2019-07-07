@@ -17,20 +17,23 @@ import { Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnDestroy {
-  private quizDataSubscription: Subscription;
+  private _quizDataSubscription: Subscription;
   public quizLoading = false;
   public error: any;
-  constructor(private store: Store<IAppState>, private cdr: ChangeDetectorRef) {
-    this.quizDataSubscription = this.store
+  constructor(
+    private _store: Store<IAppState>,
+    private _cdr: ChangeDetectorRef
+  ) {
+    this._quizDataSubscription = this._store
       .select(selectQuizState)
       .subscribe((state: IQuizState) => {
         this.quizLoading = state.questionLoading || state.answersLoading;
         this.error = state.error;
-        this.cdr.markForCheck();
+        this._cdr.markForCheck();
       });
   }
 
   ngOnDestroy() {
-    this.quizDataSubscription.unsubscribe();
+    this._quizDataSubscription.unsubscribe();
   }
 }

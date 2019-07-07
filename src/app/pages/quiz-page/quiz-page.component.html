@@ -2,7 +2,6 @@
 <div class="xng-page-narrow quiz-page-wrapper">
   <div class="xng-grid-row">
     <app-quiz-card
-      #quizCard
       (emitUserStatus)="userAnswerStatus($event)"
       [question]="question"
       [answers]="answers"

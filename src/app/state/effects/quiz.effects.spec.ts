@@ -15,7 +15,7 @@ import {
   GetRandomQuestionSuccess
 } from '@state/actions/quiz.actions';
 
-describe('QuizEffects', () => {
+xdescribe('QuizEffects', () => {
   let actions$: Observable<any>;
   let effects: QuizEffects;
   let httpMock: HttpTestingController;

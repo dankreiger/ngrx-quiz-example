@@ -1,4 +1,5 @@
 import { GetRandomQuestionPath, GetAnswersPath } from '../types/ApiPath.types';
+import { Level } from '@state/types/Level.types';
 
 /**
  * @description api paths
@@ -8,5 +9,9 @@ export const getRandomQuestionPath: GetRandomQuestionPath =
 export const getAnswersPath: GetAnswersPath = '/getAnswers';
 
 /**
- * @description actions
+ * @description difficulty levels
  */
+
+export const EASY: Level = 'Easy';
+export const MEDIUM: Level = 'Medium';
+export const HARD: Level = 'Hard';

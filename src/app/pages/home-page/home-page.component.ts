@@ -10,9 +10,9 @@ import { QuizService } from '@core/services/quiz.service';
 export class HomePageComponent {
   public logoPath = '../../../assets/img/crossengage-logo-white.png';
 
-  constructor(private quizService: QuizService) {}
+  constructor(private _quizService: QuizService) {}
 
   public fetchNewQuestion(): void {
-    this.quizService.startQuiz();
+    this._quizService.startQuiz();
   }
 }

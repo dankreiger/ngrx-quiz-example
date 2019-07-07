@@ -12,17 +12,17 @@ import { QuizService } from '@core/services/quiz.service';
 @Injectable({ providedIn: 'root' })
 export class QuizPageResolver implements Resolve<IQuizState> {
   constructor(
-    private store: Store<IAppState>,
-    private quizService: QuizService
+    private _store: Store<IAppState>,
+    private _quizService: QuizService
   ) {}
 
   public resolve(): Observable<IQuizState> {
-    this.initQuizData();
-    return this.waitForQuizData();
+    this._initQuizData();
+    return this._waitForQuizData();
   }
 
-  private waitForQuizData(): Observable<IQuizState> {
-    return this.store.select(selectQuizState).pipe(
+  private _waitForQuizData(): Observable<IQuizState> {
+    return this._store.select(selectQuizState).pipe(
       filter(
         (state: IQuizState) =>
           state.question && state.answers && state.answers.length > 0
@@ -32,13 +32,13 @@ export class QuizPageResolver implements Resolve<IQuizState> {
   }
 
   /* first() triggers dispose handlers, which make unsubscribing unnecessary */
-  private initQuizData(): void {
-    this.store
+  private _initQuizData(): void {
+    this._store
       .select(selectQuizState)
       .pipe(first())
       .subscribe((state: IQuizState) => {
         if (!state || !state.question || !state.answers) {
-          this.quizService.startQuiz();
+          this._quizService.startQuiz();
         }
       });
   }

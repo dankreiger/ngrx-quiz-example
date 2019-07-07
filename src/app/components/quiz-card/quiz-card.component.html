@@ -7,8 +7,6 @@
       <span
         class="xng-text-mute quiz-feedback"
         [class.visible]="userAnswered"
-        [class.correct]="userAnsweredCorrectly"
-        [class.incorrect]="userAnsweredIncorrectly"
         >{{ quizFeedback }}</span
       >
     </div>
@@ -17,9 +15,9 @@
       <div
         *ngIf="answers?.length"
         class="quiz-answer-button-wrapper"
-        [class.quiz-answer-buttons-entering]="quizAnswerButtonsEntering"
+        [class.new-answers-initializing]="newAnswersInitializing"
         [class.user-answered]="userAnswered"
-        [@staggerAnswerButtons]="answers.length"
+        [@staggerAnswerButtons]="answers.length && newAnswersInitializing"
         (@staggerAnswerButtons.done)="setStaggerDone()"
       >
         <button

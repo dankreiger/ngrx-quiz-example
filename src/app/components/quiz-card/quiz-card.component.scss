@@ -33,11 +33,11 @@
         transition: filter 500ms ease-out 500ms;
         filter: grayscale(100%);
         opacity: 0.5;
-        border: none;
         &.incorrect {
           opacity: 1;
-          background-color: $red;
-          color: $white;
+          border: 1px solid $red;
+          color: $red;
+          background-color: $white;
           transition: background-color 500ms ease-in;
           filter: grayscale(0%);
           opacity: 0.8;
@@ -52,7 +52,7 @@
         }
       }
     }
-    &.quiz-answer-buttons-entering {
+    &.new-answers-initializing {
       button {
         pointer-events: none;
       }
