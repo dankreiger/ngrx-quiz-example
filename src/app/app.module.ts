@@ -40,6 +40,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { ScoreboardPageComponent } from './pages/scoreboard-page/scoreboard-page.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ScoreboardPageComponent } from './pages/scoreboard-page/scoreboard-page
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
-    })
+    }),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseApiUrlInterceptor, multi: true }

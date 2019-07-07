@@ -8,7 +8,7 @@ import {
   keyframes
 } from '@angular/animations';
 
-export const quizItemAnimationDuration = 500;
+export const quizItemAnimationDuration = 400;
 const enterFrames = [
   style({ opacity: 0, transform: 'rotate3d(0, 1, 0, 90deg)' }),
   style({ opacity: 0.25, transform: 'rotate3d(0, 1, 0, 45deg)' }),

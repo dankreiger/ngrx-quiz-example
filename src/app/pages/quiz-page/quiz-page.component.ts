@@ -5,7 +5,6 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { IRandomQuestion } from '@state/interfaces/RandomQuestion.interface';
-import { enteringAnswerButtons } from './quiz-page.animations';
 import { IQuizState } from '@state/interfaces/QuizState.interface';
 import { IAnswer } from '@state/interfaces/Answer.interface';
 import { QuizService } from '@core/services/quiz.service';
@@ -29,8 +28,7 @@ enum AnswerCount {
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
   styleUrls: ['./quiz-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [enteringAnswerButtons]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuizPageComponent implements OnDestroy {
   private _quizDataSubscription: Subscription;

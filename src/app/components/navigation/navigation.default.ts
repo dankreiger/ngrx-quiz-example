@@ -7,6 +7,7 @@ export abstract class NavigationDefault {
   private _correctAnswerCount: number;
   private _quizStarted: boolean;
   private _answerButtonsEntering: boolean;
+  private _currentUrl: string;
 
   private _hasDivider = false;
 
@@ -55,5 +56,12 @@ export abstract class NavigationDefault {
   }
   get answerButtonsEntering(): boolean {
     return this._answerButtonsEntering;
+  }
+
+  set currentUrl(currentUrl: string) {
+    this._currentUrl = currentUrl;
+  }
+  get currentUrl(): string {
+    return this._currentUrl;
   }
 }

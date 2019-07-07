@@ -14,6 +14,7 @@ import { Level } from '@state/types/Level.types';
 import { QuizService } from '@core/services/quiz.service';
 import { NavigationDefault } from './navigation.default';
 import { Router } from '@angular/router';
+import { selectUrl } from '@state/selectors/router.selectors';
 
 @Component({
   selector: 'app-cmp-navigation',
@@ -24,6 +25,7 @@ import { Router } from '@angular/router';
 export class NavigationComponent extends NavigationDefault
   implements OnDestroy {
   private _quizDataSubscription: Subscription;
+  private _routerStoreSubscription: Subscription;
 
   public levels = [EASY, MEDIUM, HARD];
   public currentLevel: Level;
@@ -43,6 +45,13 @@ export class NavigationComponent extends NavigationDefault
         this.incorrectAnswerCount = state.incorrectAnswers;
         this.currentLevel = state.level;
         this.answerButtonsEntering = state.answerButtonsEntering;
+        this._cdr.markForCheck();
+      });
+
+    this._routerStoreSubscription = this._store
+      .select(selectUrl)
+      .subscribe((url: string) => {
+        this.currentUrl = url;
         this._cdr.markForCheck();
       });
   }
@@ -67,5 +76,6 @@ export class NavigationComponent extends NavigationDefault
 
   ngOnDestroy() {
     this._quizDataSubscription.unsubscribe();
+    this._routerStoreSubscription.unsubscribe();
   }
 }
