@@ -5,7 +5,11 @@ import {
   IncrementCorrectAnswers,
   IncrementIncorrectAnswers,
   SetLevel,
-  ResetScores
+  ResetScores,
+  LaunchConfirmation,
+  CloseConfirmation,
+  AcceptConfirmation,
+  ResetConfirmation
 } from '@state/actions/quiz.actions';
 
 import { IQuizState } from '@state/interfaces/QuizState.interface';
@@ -140,7 +144,7 @@ describe('QuizReducer Synchronous', () => {
       });
     });
     describe('ResetScores action', () => {
-      it('sets the difficulty level', () => {
+      it('resets the correctAnswers and incorrectAnswers to 0', () => {
         /**
          * @given
          */
@@ -163,6 +167,110 @@ describe('QuizReducer Synchronous', () => {
           ...initialState,
           correctAnswers: 0,
           incorrectAnswers: 0
+        });
+        expect(newState).not.toEqual(initialState);
+      });
+    });
+
+    describe('LaunchConfirmation action', () => {
+      it('sets the confirmationModalOpen to true', () => {
+        /**
+         * @given
+         */
+        initialState = {
+          ...quizReducerInitialState
+        };
+        const action = LaunchConfirmation();
+
+        /**
+         * @when
+         */
+        const newState = quizReducer(initialState, action);
+
+        /**
+         * @expect
+         */
+        expect(newState).toEqual({
+          ...initialState,
+          confirmationModalOpen: true
+        });
+        expect(newState).not.toEqual(initialState);
+      });
+    });
+    describe('AcceptConfirmation action', () => {
+      it('sets confirmationAccepted to true', () => {
+        /**
+         * @given
+         */
+        initialState = {
+          ...quizReducerInitialState
+        };
+        const action = AcceptConfirmation();
+
+        /**
+         * @when
+         */
+        const newState = quizReducer(initialState, action);
+
+        /**
+         * @expect
+         */
+        expect(newState).toEqual({
+          ...initialState,
+          confirmationAccepted: true
+        });
+        expect(newState).not.toEqual(initialState);
+      });
+    });
+    describe('CloseConfirmation action', () => {
+      it('sets the confirmationModalOpen to false', () => {
+        /**
+         * @given
+         */
+        initialState = {
+          ...quizReducerInitialState,
+          confirmationModalOpen: true
+        };
+        const action = CloseConfirmation();
+
+        /**
+         * @when
+         */
+        const newState = quizReducer(initialState, action);
+
+        /**
+         * @expect
+         */
+        expect(newState).toEqual({
+          ...initialState,
+          confirmationModalOpen: false
+        });
+        expect(newState).not.toEqual(initialState);
+      });
+    });
+
+    describe('ResetConfirmation action', () => {
+      it('sets confirmationAccepted to false', () => {
+        /**
+         * @given
+         */
+        initialState = {
+          ...quizReducerInitialState,
+          confirmationAccepted: true
+        };
+        const action = ResetConfirmation();
+
+        /**
+         * @when
+         */
+        const newState = quizReducer(initialState, action);
+
+        /**
+         * @expect
+         */
+        expect(newState).toEqual({
+          ...initialState,
+          confirmationAccepted: false
         });
         expect(newState).not.toEqual(initialState);
       });

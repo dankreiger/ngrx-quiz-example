@@ -14,5 +14,9 @@ export enum EQuizActionType {
   IncrementIncorrectAnswers = '[Quiz Service] Increment Incorrect Answers',
   ResetQuizData = '[Quiz Service] Reset Quiz Data',
   SetLevel = '[Quiz Service] Set Level',
-  ResetScores = '[Quiz Service] Reset Scores'
+  ResetScores = '[Quiz Service] Reset Scores',
+  LaunchConfirmation = '[Quiz Service] Launch Confirmation',
+  AcceptConfirmation = '[Quiz Service] Accept Confirmation',
+  CloseConfirmation = '[Quiz Service] Close Confirmation',
+  ResetConfirmation = '[Quiz Service] Reset Confirmation'
 }

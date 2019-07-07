@@ -11,5 +11,7 @@ export interface IQuizState {
   correctAnswers: number;
   incorrectAnswers: number;
   level: Level;
+  confirmationModalOpen: boolean;
+  confirmationAccepted: boolean;
   error?: any;
 }

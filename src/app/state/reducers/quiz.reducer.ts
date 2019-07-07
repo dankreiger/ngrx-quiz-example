@@ -13,7 +13,9 @@ export const quizReducerInitialState: IQuizState = {
   error: null,
   level: MEDIUM,
   correctAnswers: 0,
-  incorrectAnswers: 0
+  incorrectAnswers: 0,
+  confirmationModalOpen: false,
+  confirmationAccepted: false
 };
 
 /**

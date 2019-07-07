@@ -49,10 +49,19 @@ export class NavigationComponent extends NavigationDefault
   public setLevel(level: Level): void {
     this._quizService.setLevel(level);
   }
+
+  public launchLeaveConfirmation(): void {
+    this._quizService.launchConfirmation();
+  }
+
   public goHome(): void {
+    this._router.navigate(['/']);
     this._quizService.endQuiz();
     this._quizService.resetScores();
-    this._router.navigate(['/']);
+  }
+
+  public goToScoreboard(): void {
+    this._router.navigate(['/scoreboard-page']);
   }
 
   ngOnDestroy() {

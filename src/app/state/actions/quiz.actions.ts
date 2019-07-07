@@ -56,3 +56,17 @@ export const SetLevel = createAction(
   EQuizActionType.SetLevel,
   props<{ payload: { level: Level } }>()
 );
+
+export const LaunchConfirmation = createAction(
+  EQuizActionType.LaunchConfirmation
+);
+
+export const AcceptConfirmation = createAction(
+  EQuizActionType.AcceptConfirmation
+);
+export const CloseConfirmation = createAction(
+  EQuizActionType.CloseConfirmation
+);
+export const ResetConfirmation = createAction(
+  EQuizActionType.ResetConfirmation
+);

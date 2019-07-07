@@ -38,6 +38,8 @@ import { LayoutsModule } from '@layouts/layouts.module';
 import { QuizCardComponent } from './components/quiz-card/quiz-card.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { ScoreboardPageComponent } from './pages/scoreboard-page/scoreboard-page.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ErrorComponent } from './components/error/error.component';
     NotFoundPageComponent,
     QuizCardComponent,
     LoadingComponent,
-    ErrorComponent
+    ErrorComponent,
+    ConfirmationModalComponent,
+    ScoreboardPageComponent
   ],
   imports: [
     BrowserModule,

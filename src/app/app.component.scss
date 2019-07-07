@@ -11,4 +11,23 @@
   router-outlet {
     position: absolute;
   }
+  .overlay-element {
+    position: absolute;
+    display: none;
+    opacity: 0;
+    transition: opacity 250ms;
+  }
+}
+
+:host(.overlay) {
+  .overlay-element {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    opacity: 1;
+  }
 }

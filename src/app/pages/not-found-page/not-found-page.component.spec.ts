@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotFoundPageComponent } from './not-found-page.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { quizReducerInitialState } from '@state/reducers/quiz.reducer';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NotFoundPageComponent', () => {
   let component: NotFoundPageComponent;
@@ -10,6 +11,7 @@ describe('NotFoundPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [NotFoundPageComponent],
       providers: [
         provideMockStore({

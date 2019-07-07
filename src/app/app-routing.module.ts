@@ -4,6 +4,7 @@ import { QuizPageComponent } from './pages/quiz-page/quiz-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { QuizPageResolver } from '@pages/quiz-page/quiz-page.resolver';
+import { ScoreboardPageComponent } from '@pages/scoreboard-page/scoreboard-page.component';
 
 /* TODO: lazy load routes */
 const appRoutes: Routes = [
@@ -12,6 +13,11 @@ const appRoutes: Routes = [
     path: 'quiz-page',
     component: QuizPageComponent,
     resolve: { quizPageData: QuizPageResolver },
+    pathMatch: 'full'
+  },
+  {
+    path: 'scoreboard-page',
+    component: ScoreboardPageComponent,
     pathMatch: 'full'
   },
   { path: '**', component: NotFoundPageComponent }

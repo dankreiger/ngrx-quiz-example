@@ -25,6 +25,22 @@ export class QuizService {
     this._store.dispatch(QuizActions.ResetScores());
   }
 
+  public launchConfirmation(): void {
+    this._store.dispatch(QuizActions.LaunchConfirmation());
+  }
+
+  public acceptConfirmation(): void {
+    this._store.dispatch(QuizActions.AcceptConfirmation());
+  }
+
+  public closeConfirmation(): void {
+    this._store.dispatch(QuizActions.CloseConfirmation());
+  }
+
+  public resetConfirmation(): void {
+    this._store.dispatch(QuizActions.ResetConfirmation());
+  }
+
   /* sets difficulty level */
   public setLevel(level: Level): void {
     this._store.dispatch(QuizActions.SetLevel({ payload: { level } }));

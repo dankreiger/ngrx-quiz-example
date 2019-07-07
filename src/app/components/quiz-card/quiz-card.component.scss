@@ -25,12 +25,11 @@
     grid-gap: 10px;
     button {
       user-select: none;
-      transition: opacity 250ms;
     }
     &.user-answered {
       button {
         pointer-events: none;
-        transition: filter 500ms ease-out 500ms;
+        transition: filter 250ms ease-out 250ms;
         filter: grayscale(100%);
         opacity: 0.5;
         &.incorrect {
@@ -38,7 +37,7 @@
           border: 1px solid $red;
           color: $red;
           background-color: $white;
-          transition: background-color 500ms ease-in;
+          transition: background-color 250ms ease-in;
           filter: grayscale(0%);
           opacity: 0.8;
         }
@@ -46,7 +45,7 @@
           opacity: 1;
           background-color: $green;
           color: $white;
-          transition: background-color 500ms ease-in;
+          transition: background-color 250ms ease-in;
           filter: grayscale(0%);
           opacity: 1;
         }

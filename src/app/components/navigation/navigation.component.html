@@ -1,8 +1,17 @@
-<div [class]="navigationData | navigationClasses: 'outerContainer'">
+<div
+  *ngIf="quizStarted"
+  [class]="navigationData | navigationClasses: 'outerContainer'"
+>
   <div [class]="navigationData | navigationClasses: 'buttonContainer'">
-    <button class="xng-navigation__button go-home" (click)="goHome()">
+    <button
+      class="xng-navigation__button go-home"
+      (click)="launchLeaveConfirmation()"
+    >
       Home
     </button>
+    <!-- <button class="xng-navigation__button go-home" (click)="goToScoreboard()">
+      Scoreboard
+    </button> -->
   </div>
   <div [class]="navigationData | navigationClasses: 'buttonContainer'">
     <button
@@ -15,15 +24,12 @@
       {{ level }}
     </button>
   </div>
-  <div
-    *ngIf="quizStarted"
-    [class]="navigationData | navigationClasses: 'buttonContainer'"
-  >
-    <div class="xng-navigation__button user-stats-count correct">
-      {{ correctAnswerCount }}
-    </div>
+  <div [class]="navigationData | navigationClasses: 'buttonContainer'">
     <div class="xng-navigation__button user-stats-count incorrect">
       {{ incorrectAnswerCount }}
+    </div>
+    <div class="xng-navigation__button user-stats-count correct">
+      {{ correctAnswerCount }}
     </div>
   </div>
   <hr *ngIf="hasDivider" class="xng-divider-line--dark" />

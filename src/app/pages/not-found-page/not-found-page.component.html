@@ -4,9 +4,14 @@
     <div class="xng-card">
       <div class="xng-card-content">
         <h3 class="xng-h3">Page not found</h3>
-        <button class="xng-btn" routerLink="/">
-          Go Home
-        </button>
+        <div class="not-found-button-wrapper">
+          <button class="xng-btn" (click)="goHome()">
+            Go Home
+          </button>
+          <button class="xng-btn" (click)="goToQuiz()">
+            Go To Quiz
+          </button>
+        </div>
       </div>
     </div>
   </div>

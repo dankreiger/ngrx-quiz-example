@@ -9,6 +9,13 @@ body {
   margin: 0;
 }
 
+button {
+  transition: opacity 250ms, background-color 250ms;
+  &:hover {
+    opacity: 0.95;
+  }
+}
+
 @keyframes fadein {
   0% {
     opacity: 0;

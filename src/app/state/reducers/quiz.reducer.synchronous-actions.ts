@@ -6,7 +6,11 @@ import {
   StartQuiz,
   EndQuiz,
   SetLevel,
-  ResetScores
+  ResetScores,
+  LaunchConfirmation,
+  AcceptConfirmation,
+  CloseConfirmation,
+  ResetConfirmation
 } from '@state/actions/quiz.actions';
 import { on } from '@ngrx/store';
 
@@ -53,7 +57,8 @@ export const synchronousActions = [
       return {
         ...state,
         question: null,
-        answers: []
+        answers: [],
+        confirmationAccepted: false
       };
     }
   ),
@@ -73,6 +78,42 @@ export const synchronousActions = [
         ...state,
         correctAnswers: 0,
         incorrectAnswers: 0
+      };
+    }
+  ),
+  on(
+    LaunchConfirmation,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        confirmationModalOpen: true
+      };
+    }
+  ),
+  on(
+    CloseConfirmation,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        confirmationModalOpen: false
+      };
+    }
+  ),
+  on(
+    AcceptConfirmation,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        confirmationAccepted: true
+      };
+    }
+  ),
+  on(
+    ResetConfirmation,
+    (state: IQuizState): IQuizState => {
+      return {
+        ...state,
+        confirmationAccepted: false
       };
     }
   )

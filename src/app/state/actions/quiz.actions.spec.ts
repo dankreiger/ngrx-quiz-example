@@ -10,7 +10,11 @@ import {
   IncrementCorrectAnswers,
   IncrementIncorrectAnswers,
   SetLevel,
-  ResetScores
+  ResetScores,
+  LaunchConfirmation,
+  AcceptConfirmation,
+  CloseConfirmation,
+  ResetConfirmation
 } from './quiz.actions';
 import { EQuizActionType } from '@state/enums/QuizAction.enums';
 import {
@@ -114,6 +118,34 @@ describe('Quiz Actions', () => {
       it('has the correct type', () => {
         const action = ResetScores();
         expect(action.type).toBe(EQuizActionType.ResetScores);
+      });
+    });
+
+    describe('LaunchConfirmation', () => {
+      it('has the correct type', () => {
+        const action = LaunchConfirmation();
+        expect(action.type).toBe(EQuizActionType.LaunchConfirmation);
+      });
+    });
+
+    describe('AcceptConfirmation', () => {
+      it('has the correct type', () => {
+        const action = AcceptConfirmation();
+        expect(action.type).toBe(EQuizActionType.AcceptConfirmation);
+      });
+    });
+
+    describe('CloseConfirmation', () => {
+      it('has the correct type', () => {
+        const action = CloseConfirmation();
+        expect(action.type).toBe(EQuizActionType.CloseConfirmation);
+      });
+    });
+
+    describe('ResetConfirmation', () => {
+      it('has the correct type', () => {
+        const action = ResetConfirmation();
+        expect(action.type).toBe(EQuizActionType.ResetConfirmation);
       });
     });
   });
