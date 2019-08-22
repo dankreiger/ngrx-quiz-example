@@ -17,7 +17,7 @@
         class="quiz-answer-button-wrapper"
         [class.new-answers-initializing]="newAnswersInitializing"
         [class.user-answered]="userAnswered"
-        [@staggerAnswerButtons]="answers.length && newAnswersInitializing"
+        [@staggerAnswerButtons]="answers.length"
         (@staggerAnswerButtons.start)="setStaggerStart()"
         (@staggerAnswerButtons.done)="setStaggerDone()"
       >

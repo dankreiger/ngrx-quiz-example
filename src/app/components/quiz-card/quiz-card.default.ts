@@ -45,7 +45,7 @@ export abstract class QuizCardDefault {
     return answer ? answer.id : `button-${index}`;
   }
 
-  public setStaggerStart() {
+  public setStaggerStart(): void {
     this.quizService.startAnswerButtonsEntering();
   }
 
